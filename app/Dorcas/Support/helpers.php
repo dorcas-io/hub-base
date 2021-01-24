@@ -323,6 +323,7 @@ function get_dorcas_subdomain(\Hostville\Dorcas\Sdk $sdk = null)
 
     $domain = get_dorcas_parent_domain();
 
+
     $scheme = app()->environment() === 'production' ? 'https' : 'http';
 
     switch ($dorcasEdition):
@@ -331,7 +332,7 @@ function get_dorcas_subdomain(\Hostville\Dorcas\Sdk $sdk = null)
                 return $sub->prefix === $domain;
             })->first();
             //$sudomain_url = $scheme . '://' . $subdomain->prefix;
-            $sudomain_url = $subdomain->prefix;
+            $sudomain_url = $subdomain->prefix ?? 'store';
         break;
         default:
             $subdomain = $subdomains->first();
